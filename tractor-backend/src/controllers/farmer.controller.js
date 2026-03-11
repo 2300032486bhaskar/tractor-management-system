@@ -8,15 +8,17 @@ import mongoose from "mongoose";
 ===================================== */
 export const addFarmer = async (req, res) => {
   try {
-    const { name, phone } = req.body;
+    const { name, phone, mobile, village } = req.body;
 
-    if (!name || !phone) {
+    const contact = phone || mobile;
+
+    if (!name || !contact) {
       return res.status(400).json({
         message: "Name and phone required",
       });
     }
 
-    const existing = await Farmer.findOne({ phone });
+    const existing = await Farmer.findOne({ phone: contact });
 
     if (existing) {
       return res.status(400).json({
@@ -24,15 +26,19 @@ export const addFarmer = async (req, res) => {
       });
     }
 
-    const farmer = await Farmer.create({ name, phone });
+    const farmer = await Farmer.create({
+      name,
+      phone: contact,
+      village
+    });
 
     res.status(201).json(farmer);
+
   } catch (err) {
     console.error("Add Farmer Error:", err);
     res.status(500).json({ message: "Server error" });
   }
 };
-
 /* =====================================
    GET ALL FARMERS
 ===================================== */
