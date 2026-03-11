@@ -11,7 +11,7 @@ export default function Drivers() {
   const [year, setYear] = useState(new Date().getFullYear());
 
   const loadDrivers = async () => {
-    const res = await fetch("http://localhost:8082/api/drivers");
+    const res = await fetch("https://tractor-management-system-0kjw.onrender.com/api/drivers");
     const data = await res.json();
     setDrivers(data);
   };
@@ -22,7 +22,7 @@ export default function Drivers() {
       return;
     }
 
-    const res = await fetch("http://localhost:8082/api/drivers", {
+    const res = await fetch("https://tractor-management-system-0kjw.onrender.com/api/drivers", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

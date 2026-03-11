@@ -18,15 +18,13 @@ export default function FarmerLedger() {
   const [payNotes, setPayNotes] = useState("");
 
   const loadLedger = async () => {
-    const res = await fetch(
-      `http://localhost:8082/api/farmers/${id}/ledger`
-    );
+    const res = await fetch(`https://tractor-management-system-0kjw.onrender.com/api/farmers/${id}/ledger`);
     const json = await res.json();
     setData(json);
   };
 
   const loadDrivers = async () => {
-    const res = await fetch("http://localhost:8082/api/drivers");
+    const res = await fetch("https://tractor-management-system-0kjw.onrender.com/api/drivers");
     const json = await res.json();
     setDrivers(json);
   };
@@ -48,7 +46,7 @@ export default function FarmerLedger() {
       return;
     }
 
-    await fetch("http://localhost:8082/api/works", {
+    await fetch("https://tractor-management-system-0kjw.onrender.com/api/works", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -76,7 +74,7 @@ export default function FarmerLedger() {
       return;
     }
 
-    await fetch("http://localhost:8082/api/payments", {
+    await fetch("https://tractor-management-system-0kjw.onrender.com/api/payments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -106,9 +104,7 @@ export default function FarmerLedger() {
       return;
     }
 
-    const orderRes = await fetch(
-      "http://localhost:8082/api/razorpay/create-order",
-      {
+    const orderRes = await fetch("https://tractor-management-system-0kjw.onrender.com/api/razorpay/create-order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -142,9 +138,8 @@ export default function FarmerLedger() {
   const deleteWork = async (workId) => {
     if (!window.confirm("Delete this work?")) return;
 
-    await fetch(
-      `http://localhost:8082/api/works/${workId}`,
-      { method: "DELETE" }
+    await fetch(`https://tractor-management-system-0kjw.onrender.com/api/works/${workId}`, {
+      method: "DELETE" }
     );
 
     loadLedger();
@@ -153,9 +148,8 @@ export default function FarmerLedger() {
   const deletePayment = async (paymentId) => {
     if (!window.confirm("Delete this payment?")) return;
 
-    await fetch(
-      `http://localhost:8082/api/payments/${paymentId}`,
-      { method: "DELETE" }
+    await fetch(`https://tractor-management-system-0kjw.onrender.com/api/payments/${paymentId}`, {
+       method: "DELETE" }
     );
 
     loadLedger();
@@ -371,7 +365,7 @@ export default function FarmerLedger() {
               right={new Date(
                 p.date
               ).toLocaleDateString()}
-              link={`http://localhost:8082/api/payments/receipt/${p._id}`}
+              link={`https://tractor-management-system-0kjw.onrender.com/api/payments/receipt/${p._id}`}
               onDelete={() =>
                 deletePayment(p._id)
               }

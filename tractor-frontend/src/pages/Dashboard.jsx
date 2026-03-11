@@ -39,8 +39,7 @@ export default function Dashboard() {
         }
 
         const res = await fetch(
-          "http://localhost:8082/api/dashboard/summary",
-          {
+          "https://tractor-management-system-0kjw.onrender.com/api/dashboard/summary", {
             headers: {
               Authorization: `Bearer ${token}`,
             },

@@ -6,9 +6,7 @@ export default function DriverLedger() {
   const [data, setData] = useState(null);
 
   const loadLedger = async () => {
-    const res = await fetch(
-      `http://localhost:8082/api/drivers/${id}/ledger`
-    );
+    const res = await fetch(`https://tractor-management-system-0kjw.onrender.com/api/drivers/${id}/ledger`);
     const json = await res.json();
     setData(json);
   };

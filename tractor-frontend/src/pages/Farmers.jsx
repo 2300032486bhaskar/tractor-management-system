@@ -13,7 +13,7 @@ export default function Farmers() {
   const [village, setVillage] = useState("");
 
   const loadFarmers = async () => {
-    const res = await fetch("http://localhost:8082/api/farmers");
+    const res = await fetch("https://tractor-management-system-0kjw.onrender.com/api/farmers");
     const data = await res.json();
     setFarmers(data);
   };
@@ -24,9 +24,7 @@ export default function Farmers() {
       return;
     }
 
-    const res = await fetch(
-      `http://localhost:8082/api/farmers/search?q=${search}`
-    );
+    const res = await fetch(`https://tractor-management-system-0kjw.onrender.com/api/farmers/search?q=${search}`);
     const data = await res.json();
     setFarmers(data);
   };
@@ -37,7 +35,7 @@ export default function Farmers() {
       return;
     }
 
-    const res = await fetch("http://localhost:8082/api/farmers", {
+    const res = await fetch("https://tractor-management-system-0kjw.onrender.com/api/farmers", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
