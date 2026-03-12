@@ -14,13 +14,15 @@ import razorpayRoutes from "./routes/razorpay.routes.js";
 const app = express();
 
 /* ✅ CORS MUST COME FIRST */
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://tractor-management-system-rouge.vercel.app",
+    "https://tractor-management-system-rjfhwbcj9.vercel.app"
+  ],
+  methods: ["GET","POST","PUT","DELETE"],
+  credentials: true
+}));
 
 app.use(express.json());
 
