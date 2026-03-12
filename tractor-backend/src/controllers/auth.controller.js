@@ -6,16 +6,18 @@ export const login = async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    const admin = await Admin.findOne({ username });
+   const admin = await Admin.findOne({ username });
 
-    if (!admin) {
-      return res.status(401).json({
-        message: "Invalid credentials",
-      });
-    }
+console.log("Admin from DB:", admin);
+console.log("Entered password:", password);
 
-    const match = await bcrypt.compare(password, admin.passwordHash);
+if (!admin) {
+  return res.status(401).json({ message: "Invalid credentials" });
+}
 
+const match = await bcrypt.compare(password, admin.passwordHash);
+
+console.log("Password match:", match);
     if (!match) {
       return res.status(401).json({
         message: "Invalid credentials",
